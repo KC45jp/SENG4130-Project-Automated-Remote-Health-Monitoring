@@ -1,0 +1,35 @@
+@startuml
+class displayMainGUI.DisplayCommand {
+-ArrayList<String> userList
+
+}
+
+
+interface commnd.ICommand {
++ void excute()
++ void undo()
+}
+
+class displayMainGUI.PatientDetailPage {
+
+}
+
+
+class userInformartion.Patient {
+
+}
+
+class displayMainGUI.PatientThresholdInfoGUI {
+}
+
+
+
+commnd.ICommand <|.. displayMainGUI.DisplayCommand
+JSwing.JFrame <|-- displayMainGUI.PatientDetailPage
+JSwing.Box <|-- displayMainGUI.PatientThresholdInfoGUI
+displayMainGUI.PatientDetailPage --> displayMainGUI.PatientThresholdInfoGUI:use
+displayMainGUI.DisplayCommand --> displayMainGUI.PatientThresholdInfoGUI:use
+userInformartion.Patient <-- displayMainGUI.PatientThresholdInfoGUI:use
+displayMainGUI.DisplayCommand <-- displayMainGUI.PatientDetailPage:Invoke
+
+@enduml
