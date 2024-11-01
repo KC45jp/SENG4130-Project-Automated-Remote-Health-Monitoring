@@ -1,0 +1,25 @@
+@startuml
+class alertPack.DisplayCommand {
+
+}
+
+
+interface commnd.ICommand {
++ void excute()
+}
+
+class IAlertInvoker {
+
+}
+
+class alertPack.alertSender {
+}
+
+
+
+commnd.ICommand <|.. alertPack.DisplayCommand
+
+alertPack.DisplayCommand --> alertPack.alertSender:use
+alertPack.DisplayCommand <-- IAlertInvoker:Invoke
+
+@enduml
