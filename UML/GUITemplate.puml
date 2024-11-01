@@ -1,12 +1,5 @@
 @startuml
 
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
 abstract GUIpack.templatePage {
 }
 
@@ -18,6 +11,10 @@ class GUIpack.PatientListPage {
 
 class GUIpack.PatientDetailPage {
 }
+
+GUIpack.templatePage <|-- GUIpack.LoginPage
+GUIpack.templatePage <|-- PatientListPage
+GUIpack.templatePage <|-- GUIpack.PatientDetailPage
 
 
 @enduml

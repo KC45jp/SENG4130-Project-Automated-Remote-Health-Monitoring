@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+abstract class DisplayBoxElement {
+
++void updateDisplay()
+}
+
+class BloodPressureDisplay {
+}
+
+class AlertLogDisplay {
+}
+
+class GraphDisplay {
+}
+
+interface IDisplaySubject {
++ void registerObserver(IObserver)
++ void removeObserver(IObserver)
++ void notifyObserver()
+}
+
+class PatientDataGenerator {
+}
+
+
+
+
+
+
+JFrame <|-- DisplayBoxElement
+DisplayBoxElement <|-- BloodPressureDisplay
+DisplayBoxElement <|-- AlertLogDisplay
+DisplayBoxElement <|-- GraphDisplay
+IDisplaySubject <|.. PatientDataGenerator
+@enduml

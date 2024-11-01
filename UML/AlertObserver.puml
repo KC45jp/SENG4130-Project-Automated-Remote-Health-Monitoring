@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface IAlertObserver {
+
++void updateDisplay()
+}
+
+class EmailSender {
+}
+
+class ThirdPartyAlertSender {
+}
+
+interface IAlertSubject {
++ void registerObserver(IObserver)
++ void removeObserver(IObserver)
++ void notifyObserver()
+}
+
+
+
+
+IAlertObserver <|-- EmailSender
+IAlertObserver <|-- ThirdPartyAlertSender
+
+IAlertObserver <-- IAlertSubject: send
+
+
+@enduml

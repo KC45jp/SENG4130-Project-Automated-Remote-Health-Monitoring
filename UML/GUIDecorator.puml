@@ -1,5 +1,10 @@
 @startuml
-interface JFrame {
+abstract JFrame {
+}
+
+abstract class DisplayGUI.GUIDecorator {
+# JFrame mainFrame
++ void show()
 }
 
 class DisplayGUI.DisplayMenuGUI.MenuPatientInformationPane {
@@ -25,11 +30,7 @@ class DisplayGUI.displayMainGUI.AuthenticatePage {
 class DisplayGUI.displayMainGUI.PatientDetailPage {
 }
 
-abstract class DisplayGUI.GUIDecorator {
-# IDisplayGUI iDisplayGUI
-# {static} String userType
-+ void show()
-}
+
 
 class DisplayGUI.DisplayMainGUI {
 + void show()
