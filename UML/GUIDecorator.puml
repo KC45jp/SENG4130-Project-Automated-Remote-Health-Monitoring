@@ -1,0 +1,47 @@
+@startuml
+interface JFrame {
+}
+
+class DisplayGUI.DisplayMenuGUI.MenuPatientInformationPane {
++ void show()
+}
+
+class DisplayGUI.DisplayMenuGUI.MenuClinicianInformationPane {
++ void show()
+}
+
+class DisplayGUI.displayMainGUI.LogInPage {
+- void performLogIn()
+- void checkLoginChange()
+}
+
+class DisplayGUI.displayMainGUI.PatientListPage {
+}
+
+class DisplayGUI.displayMainGUI.AuthenticatePage {
+}
+
+
+class DisplayGUI.displayMainGUI.PatientDetailPage {
+}
+
+abstract class DisplayGUI.GUIDecorator {
+# IDisplayGUI iDisplayGUI
+# {static} String userType
++ void show()
+}
+
+class DisplayGUI.DisplayMainGUI {
++ void show()
+}
+
+
+DisplayGUI.GUIDecorator <|-- DisplayGUI.displayMainGUI.AuthenticatePage
+DisplayGUI.GUIDecorator <|-- DisplayGUI.displayMainGUI.LogInPage
+DisplayGUI.GUIDecorator <|-- DisplayGUI.displayMainGUI.PatientDetailPage
+DisplayGUI.GUIDecorator <|-- DisplayGUI.displayMainGUI.PatientListPage
+DisplayGUI.GUIDecorator <|-- DisplayGUI.DisplayMenuGUI.MenuClinicianInformationPane
+DisplayGUI.GUIDecorator <|-- DisplayGUI.DisplayMenuGUI.MenuPatientInformationPane
+JFrame <|.. DisplayGUI.GUIDecorator
+JFrame <|.. DisplayGUI.DisplayMainGUI
+@enduml

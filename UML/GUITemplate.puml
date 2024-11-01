@@ -1,0 +1,23 @@
+@startuml
+
+List <|-- AbstractList
+Collection <|-- AbstractCollection
+
+Collection <|- List
+AbstractCollection <|- AbstractList
+AbstractList <|-- ArrayList
+
+abstract GUIpack.templatePage {
+}
+
+class GUIpack.LoginPage {
+}
+
+class GUIpack.PatientListPage {
+}
+
+class GUIpack.PatientDetailPage {
+}
+
+
+@enduml
