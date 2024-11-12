@@ -37,4 +37,5 @@ DisplayBoxElement <|-- BloodPressureDisplay
 DisplayBoxElement <|-- AlertLogDisplay
 DisplayBoxElement <|-- GraphDisplay
 IDisplaySubject <|.. PatientDataGenerator
+IDisplaySubject --> DisplayBoxElement:Send
 @enduml
