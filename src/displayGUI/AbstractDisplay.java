@@ -8,7 +8,7 @@ public abstract class AbstractDisplay extends JFrame {
     public AbstractDisplay(String labelTitile){
         super(labelTitile);
         setTitle("Registration Form");
-        setBounds(30, 100, 100, 100);
+        setBounds(30, 100, 900, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
 
