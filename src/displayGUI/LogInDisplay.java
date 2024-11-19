@@ -17,8 +17,8 @@ public class LogInDisplay extends AbstractDisplay {
     //JButton buttonLogin;
 
 
-    public LogInDisplay(int width, int height){
-        super("Login", width, height);
+    public LogInDisplay(){
+        super("Login");
 
     }
 
@@ -93,7 +93,7 @@ public class LogInDisplay extends AbstractDisplay {
         final int VERTICAL_SIZE = 20;
         final int HORIZONTAL_SIZE = 300;
         Box passwordBox = new Box(BoxLayout.X_AXIS);
-        passwordBox.setLocation(getCenterAlignmentValue(Main_FRAME_WIDTH, HORIZONTAL_SIZE), 200);
+        //passwordBox.setLocation(getCenterAlignmentValue(Main_FRAME_WIDTH, HORIZONTAL_SIZE), 200);
         passwordBox.setSize(HORIZONTAL_SIZE, VERTICAL_SIZE);
 
         JLabel labelPassword = new JLabel("Password ");

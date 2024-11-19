@@ -4,30 +4,28 @@ import javax.swing.*;
 
 public abstract class AbstractDisplay extends JFrame {
 
-    protected final int Main_FRAME_WIDTH;
-    protected final int Main_FRAME_HEIGHT;
+    protected final int Main_FRAME_WIDTH = 900;
+    protected final int Main_FRAME_HEIGHT = 600;
 
 
-    public AbstractDisplay(String labelTitile, int width, int height){
+    public AbstractDisplay(String labelTitile){
         super(labelTitile);
         setTitle("Registration Form");
-
-        Main_FRAME_WIDTH = width;
-        Main_FRAME_HEIGHT = height;
 
 
         setBounds(30,100, Main_FRAME_WIDTH, Main_FRAME_HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
 
-        var c = getContentPane();
-        c.setLayout(null);
+
 
         addComponents();
         setActionListener();
 
-        setVisible(true);
+        //var c = getContentPane();
+        //c.setLayout(null);
 
+        setVisible(true);
     }
 
     protected abstract void addComponents();
