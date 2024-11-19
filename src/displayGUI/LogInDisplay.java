@@ -10,17 +10,16 @@ import java.util.Arrays;
 
 public class LogInDisplay extends AbstractDisplay {
 
-    final int Main_FRAME_WIDTH = 900;
-    final int Main_FRAME_HEIGHT = 600;
+
 
     JTextField textFieldUsername;
     JPasswordField passwordField;
     //JButton buttonLogin;
 
 
-    public LogInDisplay(){
-        super("Login");
-        setBounds(30,100, Main_FRAME_WIDTH, Main_FRAME_HEIGHT);
+    public LogInDisplay(int width, int height){
+        super("Login", width, height);
+
     }
 
     @Override
