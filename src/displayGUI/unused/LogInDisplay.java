@@ -1,4 +1,6 @@
-package displayGUI;
+package displayGUI.unused;
+
+import displayGUI.AbstractDisplay;
 
 import javax.swing.*;
 import java.awt.*;

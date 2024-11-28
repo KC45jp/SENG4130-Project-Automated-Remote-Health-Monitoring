@@ -15,7 +15,7 @@ public abstract class AbstractDisplay extends JFrame {
 
         setBounds(30,100, Main_FRAME_WIDTH, Main_FRAME_HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
+        //setResizable(false);
 
 
 

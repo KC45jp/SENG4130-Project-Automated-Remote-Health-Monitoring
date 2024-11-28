@@ -1,6 +1,4 @@
-package displayGUI.patientDetailv2.mainPanelState;
-
-import userData.userDefaultData;
+package displayGUI.patientDetailv3.mainPanelState;
 
 public interface IMainPanelState {
 
@@ -10,10 +8,8 @@ public interface IMainPanelState {
         setNextState();
     }
 
-    public userDefaultData getUserDefaultData();
     public void handleState();
     public void setUI();
 
     public void setNextState();
-
 }

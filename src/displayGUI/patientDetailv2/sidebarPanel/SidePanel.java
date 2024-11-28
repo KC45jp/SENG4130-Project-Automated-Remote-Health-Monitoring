@@ -1,6 +1,7 @@
 package displayGUI.patientDetailv2.sidebarPanel;
 
 import javax.swing.*;
+import java.awt.*;
 
 /*
 Side Panel
@@ -12,10 +13,13 @@ Clinician Mode
 -Search Box
  */
 
+public abstract class SidePanel extends JPanel {
 
+    public SidePanel(){
+        setLayout(new GridLayout(5,1,10,10));
+        setPreferredSize(new Dimension(200,600));
+        addComponents();
+    }
 
-
-public class SidePanel extends JPanel {
-
-
+    protected abstract void addComponents();
 }

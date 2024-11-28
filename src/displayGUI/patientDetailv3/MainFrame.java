@@ -1,44 +1,37 @@
-package displayGUI.patientDetailv2;
-
-import displayGUI.AbstractDisplay;
-import displayGUI.patientDetailv2.mainPanelState.IMainPanelState;
-import displayGUI.patientDetailv2.mainPanelState.LogInState;
+package displayGUI.patientDetailv3;
 
 import javax.swing.*;
 
-public class MainDisplay extends AbstractDisplay {
-
+public class MainFrame extends JFrame {
     MainPanel mainPanel;
 
+    protected final int Main_FRAME_WIDTH = 900;
+    protected final int Main_FRAME_HEIGHT = 600;
 
-    public MainDisplay(String labelTitile) {
+
+
+    public MainFrame(String labelTitile, MainPanel mainPanel) {
         super(labelTitile);
+        setBounds(30,100, Main_FRAME_WIDTH, Main_FRAME_HEIGHT);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //setResizable(false);
+        this.mainPanel = mainPanel;
+
+        addComponents();
+        setVisible(true);
     }
 
 
 
 
-    @Override
+
     protected void addComponents() {
         var c = getContentPane();
         c.add(setMainPanel());
-
-        //test();
-
-
-
-
-    }
-
-    @Override
-    protected void setActionListener() {
-
     }
 
     public JPanel setMainPanel() {
-        mainPanel = new MainPanel(Main_FRAME_WIDTH, Main_FRAME_HEIGHT);
         mainPanel.setLocation(0,0);
-        mainPanel.startUI();
         return mainPanel;
     }
 
