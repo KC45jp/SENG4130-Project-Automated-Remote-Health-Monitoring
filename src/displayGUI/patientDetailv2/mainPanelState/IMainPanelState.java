@@ -7,12 +7,13 @@ public interface IMainPanelState {
     default void excute(){
         handleState();
         setUI();
+        setNextState();
     }
 
     public userDefaultData getUserDefaultData();
     public void handleState();
     public void setUI();
 
-    public void nextState();
+    public void setNextState();
 
 }

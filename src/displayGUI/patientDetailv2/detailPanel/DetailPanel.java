@@ -1,5 +1,7 @@
 package displayGUI.patientDetailv2.detailPanel;
 
+import userData.userDefaultData;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -19,9 +21,26 @@ Clinician Mode
 
  */
 
-public class DetailPanel extends JFrame {
+public class DetailPanel extends JPanel {
 
+    //Set size
+    public final int Main_WIDTH = 600;
+    public final int Main_HEIGHT = 600;
+
+    //Set Panels
     ScrollPane patientLog;
+    JPanel patientGraph;
+    JPanel patientCurrentInfoPanel;
+
+    //Mode
+
+    public DetailPanel(){
+    }
+
+
+
+
+
 
 
 

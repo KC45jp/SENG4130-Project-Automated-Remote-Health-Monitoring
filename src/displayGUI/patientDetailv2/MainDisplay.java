@@ -13,8 +13,6 @@ public class MainDisplay extends AbstractDisplay {
 
     public MainDisplay(String labelTitile) {
         super(labelTitile);
-
-
     }
 
 
