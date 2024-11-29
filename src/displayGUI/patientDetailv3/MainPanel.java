@@ -1,7 +1,7 @@
 package displayGUI.patientDetailv3;
 
 
-import displayGUI.patientDetailv3.sideBarPanelComponent.clinicianSideBar;
+import displayGUI.patientDetailv3.sideBarPanelComponent.ClinicianSideBar;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +14,7 @@ public class MainPanel extends JPanel {
     public JPanel sideBarPanel;
     public JPanel mainDetailPanel;
 
-    public static clinicianSideBar clinicianSideBar;
+    public static ClinicianSideBar clinicianSideBar;
 
     public MainPanel(int width, int height){
         setSize(width, height);
@@ -26,10 +26,6 @@ public class MainPanel extends JPanel {
     }
 
     private void addComponents(){
-//        sideBarPanel = new JPanel();
-//        add(sideBarPanel, BorderLayout.WEST);
-//        mainDetailPanel = new JPanel();
-//        add(mainDetailPanel, BorderLayout.CENTER);
 
     }
 

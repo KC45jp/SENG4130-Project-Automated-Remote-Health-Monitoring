@@ -7,7 +7,11 @@ import displayGUI.patientDetailv3.mainDetailPanelComponent.PatientDetailPanel;
 import displayGUI.patientDetailv3.mainPanelState.ClinicianMode;
 import displayGUI.patientDetailv3.mainPanelState.IMainPanelState;
 import displayGUI.patientDetailv3.mainPanelState.LogInState;
-import displayGUI.patientDetailv3.sideBarPanelComponent.clinicianSideBar;
+import displayGUI.patientDetailv3.sideBarPanelComponent.ClinicianSideBar;
+import patientRecord.PatientDataManager;
+import patientRecord.dbHandler.DBHandlerXML;
+import patientRecord.dbHandler.IDBHandler;
+import userData.UserList;
 
 import javax.swing.*;
 
@@ -34,7 +38,7 @@ public class MainPanelController {
     //Mod Panel
 
     ////Side Panel
-    private clinicianSideBar defalutClinicianSideBar;
+    private ClinicianSideBar defalutClinicianSideBar;
 
 
 
@@ -50,21 +54,34 @@ public class MainPanelController {
 
 
 
+    private UserList userList;
+
+
+    //For this
+    IDBHandler dbHandler = new DBHandlerXML();
+    private PatientDataManager patientDataManager = new PatientDataManager(dbHandler);
 
 
 
 
-    public  MainPanelController(MainPanel mainPanel){
+
+
+    public  MainPanelController(MainPanel mainPanel, UserList userList){
         this.mainPanel = mainPanel;
+
+        this.userList = userList;
+
 
         //SideBar
         ////SideDefaultBar
-        this.defalutClinicianSideBar = new clinicianSideBar();
+        this.defalutClinicianSideBar = new ClinicianSideBar();
         //DetailPanel
         ////MainDetailPanel
         this.patientDetailPanel = new PatientDetailPanel();
         ////LoginPanel
         this.logInDetailPanel = new LogInDetailPanel();
+
+
 
 
 
@@ -77,6 +94,9 @@ public class MainPanelController {
         //currentPanelState = Clinician_STATE;
         currentPanelState = LOGIN_STATE;
         currentPanelState.excute();
+
+
+
 
         mainPanel.refreshPanel();
     }
@@ -92,7 +112,7 @@ public class MainPanelController {
 
 
     //Default SideBar
-    public clinicianSideBar getDefalutSideBarComponent(){
+    public ClinicianSideBar getDefalutSideBarComponent(){
         return defalutClinicianSideBar;
     }
 
@@ -138,4 +158,14 @@ public class MainPanelController {
 
 
 
+    //other
+
+
+    public PatientDataManager getPatientDataManager() {
+        return patientDataManager;
+    }
+
+    public UserList getUserList() {
+        return userList;
+    }
 }

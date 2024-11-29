@@ -1,6 +1,7 @@
 package displayGUI.patientDetailv3;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainFrame extends JFrame {
     MainPanel mainPanel;
@@ -14,6 +15,7 @@ public class MainFrame extends JFrame {
         super(labelTitile);
         setBounds(30,100, Main_FRAME_WIDTH, Main_FRAME_HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setMinimumSize(new Dimension(600,600));
         //setResizable(false);
         this.mainPanel = mainPanel;
 

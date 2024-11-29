@@ -3,6 +3,7 @@ package patientRecord;
 import patientRecord.dbHandler.BloodPressureRecord;
 import patientRecord.dbHandler.IDBHandler;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,29 +13,29 @@ import java.util.concurrent.ConcurrentHashMap;
 public class PatientDataManager {
     private final Map<String, HashMap<String, Object>> dataMap = new ConcurrentHashMap<>();
     private final List<PatientDataChangeListener> listeners = new ArrayList<>();
-    private final IDBHandler dbHandler;
+    //private final IDBHandler dbHandler;
     private int recordCounter = 0;
 
     public PatientDataManager(IDBHandler dbHandler) {
-        this.dbHandler = dbHandler;
-        loadData();
+        //this.dbHandler = dbHandler;
+        //loadData();
     }
 
-    private void loadData() {
-        Map<String, HashMap<String, Object>> initialData = dbHandler.loadData();
-        for (Map.Entry<String, HashMap<String, Object>> entry : initialData.entrySet()) {
-            dataMap.put(entry.getKey(), entry.getValue());
-            // 最大のレコード番号を探す
-            for (String key : entry.getValue().keySet()) {
-                if (key.startsWith("Record")) {
-                    int recordNumber = Integer.parseInt(key.substring(6));
-                    if (recordNumber >= recordCounter) {
-                        recordCounter = recordNumber + 1;
-                    }
-                }
-            }
-        }
-    }
+//    private void loadData() {
+//        Map<String, HashMap<String, Object>> initialData = dbHandler.loadData();
+//        for (Map.Entry<String, HashMap<String, Object>> entry : initialData.entrySet()) {
+//            dataMap.put(entry.getKey(), entry.getValue());
+//            // 最大のレコード番号を探す
+//            for (String key : entry.getValue().keySet()) {
+//                if (key.startsWith("Record")) {
+//                    int recordNumber = Integer.parseInt(key.substring(6));
+//                    if (recordNumber >= recordCounter) {
+//                        recordCounter = recordNumber + 1;
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     // イベントリスナーを追加する
     public void addPatientDataChangeListener(PatientDataChangeListener listener) {
@@ -49,14 +50,14 @@ public class PatientDataManager {
     // データを追加または更新する
     public void putData(String userId, HashMap<String, Object> data) {
         dataMap.put(userId, data);
-        dbHandler.saveData(dataMap);
+        //dbHandler.saveData(dataMap);
         triggerDataChangeEvent(userId);
     }
 
     // データを削除する
     public void removeData(String userId) {
         dataMap.remove(userId);
-        dbHandler.saveData(dataMap);
+        //dbHandler.saveData(dataMap);
         triggerDataChangeEvent(userId);
     }
 
@@ -70,9 +71,11 @@ public class PatientDataManager {
     }
 
     // 血圧記録を追加する
-    public void addBloodPressureRecord(String userId, BloodPressureRecord record) {
+    public void addBloodPressureRecord(String userId, LocalDateTime recordTime, int systolic, int diastolic) {
         HashMap<String, Object> userData = dataMap.getOrDefault(userId, new HashMap<>());
-        userData.put("Record" + recordCounter++, record);
+
+        userData.put("BloodPressureRecord", new BloodPressureRecord(recordCounter, recordTime, systolic, diastolic));
+        System.out.println(recordCounter);
         putData(userId, userData);
     }
 

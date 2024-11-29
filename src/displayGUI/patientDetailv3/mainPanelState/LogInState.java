@@ -81,8 +81,7 @@ public class LogInState implements IMainPanelState{
                 //super.mouseClicked(e);
                 if(logInDetailPanel.getRadioButtonClinician().isSelected()){
                     performClinicianLoginAction();
-
-
+                    JOptionPane.showMessageDialog(logInDetailPanel, "Does Not Support in this version but display all patient");
                 } else if (logInDetailPanel.getRadioButtonPatient().isSelected()) {
                     //performLoginAction();
                     JOptionPane.showMessageDialog(logInDetailPanel, "Does Not Support in this version");
@@ -90,8 +89,6 @@ public class LogInState implements IMainPanelState{
                 else{
                     throw new RuntimeException("No search mode selected. Select what to search");
                 }
-
-
             }
         });
     }

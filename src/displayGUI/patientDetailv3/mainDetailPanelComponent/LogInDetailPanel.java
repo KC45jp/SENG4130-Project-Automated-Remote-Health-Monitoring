@@ -94,15 +94,12 @@ public class LogInDetailPanel extends JPanel {
         final int HORIZONTAL_SIZE = 300;
 
         Box passwordBox = Box.createHorizontalBox();
-        //passwordBox.setBounds(mainPanel.getCenterAlignmentValue(mainPanel.Main_WIDTH, HORIZONTAL_SIZE), 200, HORIZONTAL_SIZE, VERTICAL_SIZE);
-
         JLabel labelPassword = new JLabel("Password ");
         labelPassword.setFont(new Font("Arial", Font.PLAIN, VERTICAL_SIZE));
         labelPassword.setHorizontalAlignment(SwingConstants.LEFT);
         passwordBox.add(labelPassword);
 
         passwordField = new JPasswordField(10);
-        //passwordField.setSize(new Dimension(200, VERTICAL_SIZE));
         passwordBox.add(passwordField);
 
         return passwordBox;
@@ -165,29 +162,4 @@ public class LogInDetailPanel extends JPanel {
     public JButton getButtonLogin() {
         return buttonLogin;
     }
-
-    //    private void performLoginAction(){
-//        String userName = textFieldUsername.getText();
-//        String password = Arrays.toString(passwordField.getPassword());
-//
-//        //Check Login success or not
-//        if (authenticateLogin()) {
-//            JOptionPane.showMessageDialog(this, "Welcome");
-//
-//
-//
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Your user name/Password does not match");
-//        }
-//    }
-//
-//    private boolean authenticateLogin(){
-//
-//        return true;
-//    }
-
-
-
-
-
 }
