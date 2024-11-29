@@ -3,14 +3,13 @@ package displayGUI.patientDetailv3;
 
 
 import displayGUI.patientDetailv3.mainDetailPanelComponent.LogInDetailPanel;
-import displayGUI.patientDetailv3.mainDetailPanelComponent.PatientDetailPanel;
+import displayGUI.patientDetailv3.mainDetailPanelComponent.patientDetailComponent.PatientDetailPanel;
 import displayGUI.patientDetailv3.mainPanelState.ClinicianMode;
 import displayGUI.patientDetailv3.mainPanelState.IMainPanelState;
 import displayGUI.patientDetailv3.mainPanelState.LogInState;
 import displayGUI.patientDetailv3.sideBarPanelComponent.ClinicianSideBar;
 import patientRecord.PatientDataManager;
-import patientRecord.dbHandler.DBHandlerXML;
-import patientRecord.dbHandler.IDBHandler;
+
 import userData.UserList;
 
 import javax.swing.*;
@@ -58,8 +57,8 @@ public class MainPanelController {
 
 
     //For this
-    IDBHandler dbHandler = new DBHandlerXML();
-    private PatientDataManager patientDataManager = new PatientDataManager(dbHandler);
+    //IDBHandler dbHandler = new DBHandlerXML();
+    private PatientDataManager patientDataManager = new PatientDataManager();
 
 
 

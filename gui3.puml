@@ -1,0 +1,218 @@
+@startuml
+class displayGUI.patientDetailv3.mainDetailPanelComponent.patientDetailComponent.infoPanel.PatientInfoPanel {
++ PatientData patientData
+- GridBagLayout gridBagLayout
+- GridBagConstraints gbc
+- Font defaultFont
++ <<Create>> PatientInfoPanel(PatientData)
+- void setGridBagConstrains()
+- GridBagConstraints getSetGridBagConstrains(int,int)
+- GridBagConstraints getSetGridBagConstrains(int,int,int,int)
+- void setComponent()
+- JLabel setLabelPatientNameLabel()
+- JLabel setLabelPatientName(PatientData)
+- JLabel setLabelAddressLabel()
+- JLabel setLabelAddress(PatientData)
+- JLabel setLabelEmailLabel()
+- JLabel setLabelEmail(PatientData)
+}
+
+
+class displayGUI.patientDetailv3.mainDetailPanelComponent.patientDetailComponent.PatientDetailPanel {
+- PatientData pd
+- JPanel generalInformation
+- GridBagConstraints gbc
+- JList jlist
++ <<Create>> PatientDetailPanel()
++ void setNewPatient(PatientData)
++ void setDefaultComponent()
+- void setGridBagConstrains()
+- GridBagConstraints getSetGridBagConstrains(int,int)
+- GridBagConstraints getSetGridBagConstrains(int,int,int,int)
++ void setGeneralInformation(PatientData)
++ void setPatientLogPanel(BloodPressureRecordList)
++ void setPatientLogPanel(boolean,BloodPressureRecordList)
++ JList getJlist()
+- void testFunction()
++ void refreshPanel()
+}
+
+
+class displayGUI.patientDetailv3.MainFrame {
+~ MainPanel mainPanel
+# int Main_FRAME_WIDTH
+# int Main_FRAME_HEIGHT
++ <<Create>> MainFrame(String,MainPanel)
+# void addComponents()
++ JPanel setMainPanel()
+- void resetPanel()
+- void test()
+}
+
+
+class displayGUI.patientDetailv3.sideBarPanelComponent.ClinicianSideBar {
+- JRadioButton patientIdRadioButton
+- JRadioButton patientNameRadioButton
+- JTextField patientSearchTextField
+- JButton actionButton
+- JList<PatientData> dataJList
+- ButtonGroup patientSearchModeSelectBG
+- ArrayList<PatientData> patientDataArrayList
+~ DefaultListModel<PatientData> listModel
++ <<Create>> ClinicianSideBar()
+- void addComponents()
+- void addSearchBoxLabel(GridBagConstraints)
+- void addSearchBox(GridBagConstraints)
+- void addActionButton(GridBagConstraints)
+- void addDataJList(GridBagConstraints)
++ JRadioButton getPatientNameRadioButton()
++ JRadioButton getPatientIdRadioButton()
++ JTextField getPatientSearchTextField()
++ JButton getActionButton()
++ JList<PatientData> getDataJList()
++ void setListModel(ArrayList<PatientData>)
+}
+
+
+abstract class displayGUI.AbstractDisplay {
+# int Main_FRAME_WIDTH
+# int Main_FRAME_HEIGHT
++ <<Create>> AbstractDisplay(String)
+# {abstract}void addComponents()
+# {abstract}void setActionListener()
+# int getCenterAlignmentValue(int,int)
+}
+
+
+class displayGUI.patientDetailv3.MainPanelController {
+- MainPanel mainPanel
+- ClinicianSideBar defalutClinicianSideBar
+- PatientDetailPanel patientDetailPanel
+- LogInDetailPanel logInDetailPanel
++ IMainPanelState currentPanelState
++ IMainPanelState nextPanelState
++ {static} IMainPanelState Clinician_STATE
++ {static} IMainPanelState LOGIN_STATE
+- UserList userList
+- PatientDataManager patientDataManager
++ <<Create>> MainPanelController(MainPanel,UserList)
++ void setSideBar(JPanel)
++ ClinicianSideBar getDefalutSideBarComponent()
++ void setDetailPanel(JPanel)
++ PatientDetailPanel getPatientDetailPanel()
++ LogInDetailPanel getLogInDetailPanel()
++ IMainPanelState getClinician_STATE()
++ IMainPanelState getLoginState()
++ void setNextPanelState(IMainPanelState)
++ void repaintToNextState()
++ PatientDataManager getPatientDataManager()
++ UserList getUserList()
+}
+
+
+class displayGUI.patientDetailv3.MainPanel {
++ int Main_WIDTH
++ int Main_HEIGHT
++ JPanel sideBarPanel
++ JPanel mainDetailPanel
++ {static} ClinicianSideBar clinicianSideBar
++ <<Create>> MainPanel(int,int)
+- void addComponents()
++ void setSideBarPanel(JPanel)
++ void setMainDetailPanel(JPanel)
++ void refreshPanel()
+}
+
+
+interface displayGUI.patientDetailv3.mainPanelState.IMainPanelState {
+~ void excute()
++ void handleState()
++ void setUI()
++ void setNextState()
+}
+
+class displayGUI.patientDetailv3.mainPanelState.ClinicianMode {
+- {static} MainPanelController mainPanelController
+- {static} ClinicianMode clinicianMode
+- {static} PatientData patientData
+- <<Create>> ClinicianMode(MainPanelController)
++ {static} ClinicianMode initializeInstance(MainPanelController)
++ {static} ClinicianMode getInstance()
++ void handleState()
++ void setUI()
++ void setNextState()
+- void performSearchAction()
+- void setSideBar()
+- void setDetailPanel()
+- void setPatientGeneralInfo()
+- void setPatientLogData()
+- boolean checkThreshold(PatientData,BloodPressureRecord)
++ void patientDataChanged(PatientDataChangeEvent)
++ void TESTER()
++ void addBloodPressureRecordFromInput()
+}
+
+
+class displayGUI.patientDetailv3.mainDetailPanelComponent.LogInDetailPanel {
+- JTextField textFieldUsername
+- JPasswordField passwordField
+- JRadioButton radioButtonClinician
+- JRadioButton radioButtonPatient
+- JButton buttonLogin
+- GridBagLayout gridBagLayout
+- GridBagConstraints gbc
++ <<Create>> LogInDetailPanel()
+- void setGridBagConstrains()
+- GridBagConstraints getSetGridBagConstrains(int,int)
+- GridBagConstraints getSetGridBagConstrains(int,int,int,int)
+- void setComponent()
+- JLabel setLabelLogin()
+- Box setUsernameBox()
+- Box setPasswordBox()
+- JRadioButton setRadioButtonClinician()
+- JRadioButton setRadioButtonPatient()
+- void setLogInSelectButtonGroup()
+- JButton setLoginButton()
++ JTextField getTextFieldUsername()
++ JPasswordField getPasswordField()
++ JRadioButton getRadioButtonClinician()
++ JRadioButton getRadioButtonPatient()
++ JButton getButtonLogin()
+}
+
+
+class displayGUI.patientDetailv3.mainPanelState.LogInState {
+- {static} MainPanelController mainPanelController
+- {static} LogInState logInState
+~ LogInDetailPanel logInDetailPanel
+- <<Create>> LogInState(MainPanelController)
++ {static} LogInState initializeInstance(MainPanelController)
++ {static} LogInState getInstance()
++ void handleState()
++ void setUI()
++ void setNextState()
+- void setButtonActionListener()
+- void performClinicianLoginAction()
+- boolean authenticateLogin()
+}
+
+
+
+
+displayGUI.patientDetailv3.mainDetailPanelComponent.patientDetailComponent.infoPanel.JPanel <|-- displayGUI.patientDetailv3.mainDetailPanelComponent.patientDetailComponent.infoPanel.PatientInfoPanel
+displayGUI.patientDetailv3.mainDetailPanelComponent.patientDetailComponent.JPanel <|-- displayGUI.patientDetailv3.mainDetailPanelComponent.patientDetailComponent.PatientDetailPanel
+displayGUI.patientDetailv3.JFrame <|-- displayGUI.patientDetailv3.MainFrame
+displayGUI.patientDetailv3.sideBarPanelComponent.JPanel <|-- displayGUI.patientDetailv3.sideBarPanelComponent.ClinicianSideBar
+displayGUI.JFrame <|-- displayGUI.AbstractDisplay
+displayGUI.patientDetailv3.JPanel <|-- displayGUI.patientDetailv3.MainPanel
+displayGUI.patientDetailv3.mainPanelState.IMainPanelState <|.. displayGUI.patientDetailv3.mainPanelState.ClinicianMode
+patientRecord.IPatientDataChangeListener <|.. displayGUI.patientDetailv3.mainPanelState.ClinicianMode
+displayGUI.patientDetailv3.mainDetailPanelComponent.JPanel <|-- displayGUI.patientDetailv3.mainDetailPanelComponent.LogInDetailPanel
+displayGUI.patientDetailv3.mainPanelState.IMainPanelState <|.. displayGUI.patientDetailv3.mainPanelState.LogInState
+displayGUI.patientDetailv3.MainPanelController <-- displayGUI.patientDetailv3.mainPanelState.IMainPanelState
+displayGUI.patientDetailv3.MainPanelController <-- displayGUI.patientDetailv3.MainPanel
+displayGUI.patientDetailv3.MainPanelController <-- displayGUI.patientDetailv3.MainFrame
+displayGUI.patientDetailv3.MainFrame <-- displayGUI.patientDetailv3.MainPanel
+displayGUI.patientDetailv3.MainPanelController <-- displayGUI.patientDetailv3.sideBarPanelComponent
+displayGUI.patientDetailv3.MainPanelController <-- displayGUI.patientDetailv3.mainDetailPanelComponent.patientDetailComponent
+@enduml

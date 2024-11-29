@@ -1,11 +1,6 @@
-package displayGUI.patientDetailv3.mainDetailPanelComponent.patientDetailComponent;
+package displayGUI.patientDetailv3.mainDetailPanelComponent.patientDetailComponent.infoPanel;
 
-import patientRecord.PatientDataChangeEvent;
-import patientRecord.PatientDataChangeListener;
 import userData.patientData.PatientData;
-
-import javax.swing.*;
-import java.awt.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +13,8 @@ public class PatientInfoPanel extends JPanel {
     private GridBagConstraints gbc;
 
     private Font defaultFont;
+
+
 
     public PatientInfoPanel(PatientData patientData) {
         this.patientData = patientData;
@@ -102,4 +99,11 @@ public class PatientInfoPanel extends JPanel {
         emailLabel.setFont(defaultFont);
         return emailLabel;
     }
+
+
+
+
+
+
+
 }

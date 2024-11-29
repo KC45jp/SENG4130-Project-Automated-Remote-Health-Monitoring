@@ -30,12 +30,22 @@ public class Main {
         ArrayList<ClinicianData> cd = new ArrayList<>();
         cd.add(new ClinicianData("c001", "John", "Due", "000", "001", "i9@hh.cm","rms"));
 
-        ArrayList<PatientData> pd = new ArrayList<>();
-        pd.add(new PatientData("p001", "Doc1","DocF", "000", "005", "dmdm@dm.dm", "Kamloops"));
-        pd.add(new PatientData("p002", "Doc2","DomDom", "000", "005", "dmdm@dm.dm", "Kamloops"));
+
+        PatientData pd = new PatientData("p001", "Doc1","DocF", "000", "005", "dmdm@dm.dm", "Kamloops");
+        pd.setBloodPressureThreshold(130, 90, 90, 60);
+
+        PatientData pd2 = new PatientData("p002", "Doc2","DomDom", "000", "005", "dmdm@dm.dm", "Kamloops");
+        pd2.setBloodPressureThreshold(130, 90, 90, 60);
+        pd2.setBloodPressureThreshold(130, 90, 90, 60);
 
 
-        UserList UL = new UserList(cd,pd);
+        ArrayList<PatientData> patientDataArrayList = new ArrayList<>();
+        patientDataArrayList.add(pd);
+        patientDataArrayList.add(pd2);
+
+
+
+        UserList UL = new UserList(cd,patientDataArrayList);
 
 
 
