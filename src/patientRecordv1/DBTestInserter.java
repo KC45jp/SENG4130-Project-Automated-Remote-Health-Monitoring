@@ -1,7 +1,5 @@
 package patientRecord;
 
-import patientRecord.dbHandler.BloodPressureRecord;
-
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Random;
@@ -22,8 +20,8 @@ public class DBTestInserter {
 
             // 血圧記録を追加
             for (int j = 0; j < 5; j++) {
-                BloodPressureRecord record = new BloodPressureRecord(LocalDateTime.now(), random.nextInt(40) + 80, random.nextInt(40) + 60);
-                dataManager.addBloodPressureRecord(userId, record);
+                //BloodPressureRecord record = new BloodPressureRecord(LocalDateTime.now(), random.nextInt(40) + 80, random.nextInt(40) + 60);
+                dataManager.addBloodPressureRecord(userId, LocalDateTime.now(), random.nextInt(40) + 80, random.nextInt(40) + 60);
             }
         }
     }

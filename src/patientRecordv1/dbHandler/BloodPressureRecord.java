@@ -1,12 +1,13 @@
 package patientRecord.dbHandler;
 import java.time.LocalDateTime;
 
-public class BloodPressureRecord {
+public class BloodPressureRecord extends genericRecord{
     private LocalDateTime recordTime;
     private int systolic;
     private int diastolic;
 
-    public BloodPressureRecord(LocalDateTime recordTime, int systolic, int diastolic) {
+    public BloodPressureRecord(int id, LocalDateTime recordTime, int systolic, int diastolic) {
+        super(id);
         this.recordTime = recordTime;
         this.systolic = systolic;
         this.diastolic = diastolic;
@@ -27,7 +28,8 @@ public class BloodPressureRecord {
     @Override
     public String toString() {
         return "BloodPressureRecord{" +
-                "recordTime=" + recordTime +
+                "recordId="+ getRecordId()+
+                ", recordTime=" + recordTime +
                 ", systolic=" + systolic +
                 ", diastolic=" + diastolic +
                 '}';

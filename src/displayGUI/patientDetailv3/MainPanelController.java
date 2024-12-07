@@ -3,11 +3,14 @@ package displayGUI.patientDetailv3;
 
 
 import displayGUI.patientDetailv3.mainDetailPanelComponent.LogInDetailPanel;
-import displayGUI.patientDetailv3.mainDetailPanelComponent.PatientDetailPanel;
+import displayGUI.patientDetailv3.mainDetailPanelComponent.patientDetailComponent.PatientDetailPanel;
 import displayGUI.patientDetailv3.mainPanelState.ClinicianMode;
 import displayGUI.patientDetailv3.mainPanelState.IMainPanelState;
 import displayGUI.patientDetailv3.mainPanelState.LogInState;
-import displayGUI.patientDetailv3.sideBarPanelComponent.clinicianSideBar;
+import displayGUI.patientDetailv3.sideBarPanelComponent.ClinicianSideBar;
+import patientRecord.PatientDataManager;
+
+import userData.UserList;
 
 import javax.swing.*;
 
@@ -19,12 +22,11 @@ This class will have Several States.
 
 To make this class not too huge with unnecessary methods, please implement concrete method to Listeners in each state.
 
-
-
  */
 /////////////////////////
 
-
+/**Main Panel Controller is controller of MVC model of this project and change its behavior by State Pattern.
+ */
 public class MainPanelController {
 
     //Main Panel
@@ -34,7 +36,7 @@ public class MainPanelController {
     //Mod Panel
 
     ////Side Panel
-    private clinicianSideBar defalutClinicianSideBar;
+    private ClinicianSideBar defalutClinicianSideBar;
 
 
 
@@ -49,22 +51,38 @@ public class MainPanelController {
     public static IMainPanelState LOGIN_STATE;
 
 
+    /// Business Logics
+    /// FOllowing are business logics
+
+    //User List both patient and clinicians
+    private UserList userList;
+
+
+
+    //Business logic of this project which controls Data
+    private PatientDataManager patientDataManager = new PatientDataManager();
 
 
 
 
 
-    public  MainPanelController(MainPanel mainPanel){
+
+    public  MainPanelController(MainPanel mainPanel, UserList userList){
         this.mainPanel = mainPanel;
+
+        this.userList = userList;
+
 
         //SideBar
         ////SideDefaultBar
-        this.defalutClinicianSideBar = new clinicianSideBar();
+        this.defalutClinicianSideBar = new ClinicianSideBar();
         //DetailPanel
         ////MainDetailPanel
         this.patientDetailPanel = new PatientDetailPanel();
         ////LoginPanel
         this.logInDetailPanel = new LogInDetailPanel();
+
+
 
 
 
@@ -77,6 +95,9 @@ public class MainPanelController {
         //currentPanelState = Clinician_STATE;
         currentPanelState = LOGIN_STATE;
         currentPanelState.excute();
+
+
+
 
         mainPanel.refreshPanel();
     }
@@ -92,7 +113,7 @@ public class MainPanelController {
 
 
     //Default SideBar
-    public clinicianSideBar getDefalutSideBarComponent(){
+    public ClinicianSideBar getDefalutSideBarComponent(){
         return defalutClinicianSideBar;
     }
 
@@ -138,4 +159,12 @@ public class MainPanelController {
 
 
 
+    //other getters
+    public PatientDataManager getPatientDataManager() {
+        return patientDataManager;
+    }
+
+    public UserList getUserList() {
+        return userList;
+    }
 }

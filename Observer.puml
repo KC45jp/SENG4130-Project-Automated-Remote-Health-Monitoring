@@ -1,0 +1,31 @@
+@startuml
+class patientRecord.PatientDataManager {
+- PatientListEntry patientListEntry
+- List<IPatientDataChangeListener> listeners
++ void addPatientDataChangeListener(IPatientDataChangeListener)
++ void addBloodPressureRecord(String,String,int,int)
+- void triggerDataChangeEvent(String)
++ PatientListEntry getPatientListEntry()
+- void TEST()
+}
+
+
+interface patientRecord.IPatientDataChangeListener {
++ void patientDataChanged(PatientDataChangeEvent)
+}
+
+class patientRecord.PatientDataChangeEvent {
+- String userId
++ String getUserId()
+}
+
+
+
+
+java.util.EventListener <|-- patientRecord.IPatientDataChangeListener
+java.util.EventObject <|-- patientRecord.PatientDataChangeEvent
+patientRecord.PatientDataManager --> patientRecord.IPatientDataChangeListener
+java.util.EventObject <-- java.util.EventListener :has
+
+
+@enduml

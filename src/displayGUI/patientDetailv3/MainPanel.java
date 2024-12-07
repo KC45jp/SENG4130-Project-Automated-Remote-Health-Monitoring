@@ -1,11 +1,14 @@
 package displayGUI.patientDetailv3;
 
 
-import displayGUI.patientDetailv3.sideBarPanelComponent.clinicianSideBar;
+import displayGUI.patientDetailv3.sideBarPanelComponent.ClinicianSideBar;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**View of the MVC model.
+ * Have two component, sidebar and detail panel. Controller select what to do.
+ */
 public class MainPanel extends JPanel {
 
     public final int Main_WIDTH;
@@ -14,7 +17,7 @@ public class MainPanel extends JPanel {
     public JPanel sideBarPanel;
     public JPanel mainDetailPanel;
 
-    public static clinicianSideBar clinicianSideBar;
+    //public static ClinicianSideBar clinicianSideBar;
 
     public MainPanel(int width, int height){
         setSize(width, height);
@@ -26,10 +29,6 @@ public class MainPanel extends JPanel {
     }
 
     private void addComponents(){
-//        sideBarPanel = new JPanel();
-//        add(sideBarPanel, BorderLayout.WEST);
-//        mainDetailPanel = new JPanel();
-//        add(mainDetailPanel, BorderLayout.CENTER);
 
     }
 
@@ -62,6 +61,8 @@ public class MainPanel extends JPanel {
         refreshPanel();
     }
 
+    /**To refresh panel when it is updated.
+     */
     public void refreshPanel(){
         invalidate();
         validate();

@@ -11,6 +11,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -18,10 +19,8 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class DBHandlerXML implements IDBHandler {
     private final String filePath = "patient_data.xml";
@@ -29,6 +28,14 @@ public class DBHandlerXML implements IDBHandler {
     @Override
     public void saveData(Map<String, HashMap<String, Object>> dataMap) {
         try {
+            // Load existing data
+            Map<String, HashMap<String, Object>> existingDataMap = loadData();
+
+            // Merge new data into existing data
+            for (Map.Entry<String, HashMap<String, Object>> entry : dataMap.entrySet()) {
+                existingDataMap.put(entry.getKey(), entry.getValue());
+            }
+
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
             Document document = documentBuilder.newDocument();
@@ -36,22 +43,11 @@ public class DBHandlerXML implements IDBHandler {
             Element root = document.createElement("Patients");
             document.appendChild(root);
 
-            for (Map.Entry<String, HashMap<String, Object>> entry : dataMap.entrySet()) {
+            for (Map.Entry<String, HashMap<String, Object>> entry : existingDataMap.entrySet()) {
                 Element patient = document.createElement("Patient");
                 patient.setAttribute("userId", entry.getKey());
 
-                // Recordを追加日付の降順にソートする
-                TreeMap<String, Object> sortedRecords = new TreeMap<>(new Comparator<String>() {
-                    @Override
-                    public int compare(String o1, String o2) {
-                        int recordNumber1 = Integer.parseInt(o1.substring(6));
-                        int recordNumber2 = Integer.parseInt(o2.substring(6));
-                        return Integer.compare(recordNumber2, recordNumber1); // 降順
-                    }
-                });
-                sortedRecords.putAll(entry.getValue());
-
-                for (Map.Entry<String, Object> dataEntry : sortedRecords.entrySet()) {
+                for (Map.Entry<String, Object> dataEntry : entry.getValue().entrySet()) {
                     Element data = document.createElement(dataEntry.getKey());
                     data.appendChild(document.createTextNode(dataEntry.getValue().toString()));
                     patient.appendChild(data);
@@ -66,10 +62,15 @@ public class DBHandlerXML implements IDBHandler {
             StreamResult streamResult = new StreamResult(new File(filePath));
 
             transformer.transform(domSource, streamResult);
-        } catch (ParserConfigurationException | TransformerException e) {
-            e.printStackTrace();
+        } catch (TransformerConfigurationException e) {
+            throw new RuntimeException(e);
+        } catch (TransformerException e) {
+            throw new RuntimeException(e);
+        } catch (ParserConfigurationException e) {
+            throw new RuntimeException(e);
         }
     }
+
 
     @Override
     public Map<String, HashMap<String, Object>> loadData() {

@@ -1,0 +1,70 @@
+@startuml
+class patientRecord.patientRecordComposite.PatientListEntry {
+# List<Entry> record
++ String getContent(String)
++ boolean isLeaf()
++ Entry add(Entry)
++ List<Entry> getRecord()
++ Entry getRecordContent(String)
+}
+
+
+class patientRecord.patientRecordComposite.recordContent.bloodPressure.BloodPressureRecordList {
+}
+abstract class patientRecord.patientRecordComposite.Entry {
+# String name
++ String getName()
++ {abstract}String getContent(String)
++ {abstract}boolean isLeaf()
+}
+
+
+class patientRecord.patientRecordComposite.recordContent.bloodPressure.BloodPressureRecord {
+- double systolic
+- double diastolic
+- LocalDateTime recordTime
++ String getContent(String)
++ boolean isLeaf()
++ String toString()
+}
+
+
+class patientRecord.patientRecordComposite.PatientEntry {
+# List<Entry> record
++ String getContent(String)
++ boolean isLeaf()
++ Entry add(Entry)
++ List<Entry> getRecord()
+}
+
+
+abstract class patientRecord.patientRecordComposite.RecordEntry {
+# List<Entry> record
++ String getContent(String)
++ boolean isLeaf()
++ Entry add(Entry)
++ List<Entry> getRecord()
+}
+
+
+class patientRecord.patientRecordComposite.DataEntry {
+- String value
++ String getContent(String)
++ boolean isLeaf()
+}
+
+
+
+
+patientRecord.patientRecordComposite.Entry <|-- patientRecord.patientRecordComposite.PatientListEntry
+patientRecord.patientRecordComposite.RecordEntry <|-- patientRecord.patientRecordComposite.recordContent.bloodPressure.BloodPressureRecordList
+patientRecord.patientRecordComposite.Entry <|-- patientRecord.patientRecordComposite.recordContent.bloodPressure.BloodPressureRecord
+patientRecord.patientRecordComposite.Entry <|-- patientRecord.patientRecordComposite.PatientEntry
+patientRecord.patientRecordComposite.Entry <|-- patientRecord.patientRecordComposite.RecordEntry
+patientRecord.patientRecordComposite.Entry <|-- patientRecord.patientRecordComposite.DataEntry
+
+
+patientRecord.patientRecordComposite.Entry o--> patientRecord.patientRecordComposite.PatientListEntry
+patientRecord.patientRecordComposite.Entry o--> patientRecord.patientRecordComposite.PatientEntry
+patientRecord.patientRecordComposite.Entry o--> patientRecord.patientRecordComposite.RecordEntry
+@enduml

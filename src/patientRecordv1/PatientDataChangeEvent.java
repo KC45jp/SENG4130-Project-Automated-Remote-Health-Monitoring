@@ -2,6 +2,7 @@ package patientRecord;
 
 import java.util.EventObject;
 
+// 患者データの変更イベント
 public class PatientDataChangeEvent extends EventObject {
     private final String userId;
 
