@@ -1,5 +1,7 @@
 package patientRecord.patientRecordComposite;
 
+/**Holld each data of record which is the leaf of the node.
+ */
 public class DataEntry extends Entry {
 
 
@@ -12,6 +14,7 @@ public class DataEntry extends Entry {
 
     @Override
     public String getContent(String s) {
+        //regurd less of the input return value.
         return value;
     }
 

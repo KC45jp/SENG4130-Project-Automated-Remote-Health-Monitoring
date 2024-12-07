@@ -3,6 +3,8 @@ package patientRecord.patientRecordComposite;
 import java.util.ArrayList;
 import java.util.List;
 
+/**patient entry holed by patientListEntry. Contain all the record of specified patient.
+ */
 public class PatientEntry extends Entry{
 
     protected List<Entry> record;

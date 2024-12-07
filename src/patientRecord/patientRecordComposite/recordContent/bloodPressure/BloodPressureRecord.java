@@ -5,6 +5,10 @@ import patientRecord.patientRecordComposite.Entry;
 
 import java.time.LocalDateTime;
 
+
+/**Because Blood pressure records both systolic and diastolic value we have both data in one record.
+ * This will be under the BloodPressire record List
+ */
 public class BloodPressureRecord extends Entry {
 
     private double systolic;

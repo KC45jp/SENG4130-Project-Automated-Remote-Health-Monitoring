@@ -3,6 +3,8 @@ package patientRecord.patientRecordComposite;
 import java.util.ArrayList;
 import java.util.List;
 
+/**Root Entry of this composite pattern which store patient data.
+ */
 public class PatientListEntry extends Entry{
 
     protected List<Entry> record;

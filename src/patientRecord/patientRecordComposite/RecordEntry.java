@@ -3,6 +3,8 @@ package patientRecord.patientRecordComposite;
 import java.util.ArrayList;
 import java.util.List;
 
+/**Contain List of the one tyoe of records (In this case, Bloodpressure) got by patient device. Held by patientEntry.
+ */
 public abstract class RecordEntry extends Entry {
 
     protected List<Entry> record;

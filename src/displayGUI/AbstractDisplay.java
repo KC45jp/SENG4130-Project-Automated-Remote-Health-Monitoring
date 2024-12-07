@@ -2,6 +2,8 @@ package displayGUI;
 
 import javax.swing.*;
 
+/**abstract JFrame which only used for MainFrame for now.
+ */
 public abstract class AbstractDisplay extends JFrame {
 
     protected final int Main_FRAME_WIDTH = 900;
@@ -21,10 +23,6 @@ public abstract class AbstractDisplay extends JFrame {
 
         addComponents();
         setActionListener();
-
-        //var c = getContentPane();
-        //c.setLayout(null);
-
         setVisible(true);
     }
 

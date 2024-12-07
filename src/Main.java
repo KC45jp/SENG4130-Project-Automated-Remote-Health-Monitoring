@@ -14,18 +14,20 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class Main {
     public static void main(String[] args) {
-        //new LogInDisplay(900,600);
 
+        //Set Main Panel (View)
         MainPanel mainPanel = new MainPanel(900, 600);
+
+        //Set Controller
         MainPanelController controller = new MainPanelController(mainPanel, testUserData());
 
+        //Generate Main frame
         new MainFrame("Main", mainPanel);
-
-        //testFrame();
-
-
     }
 
+    /**This method makes test user data (Patient data) which make it much better. This works as business logic
+     * @return Patient Data
+     */
     private static UserList testUserData(){
         ArrayList<ClinicianData> cd = new ArrayList<>();
         cd.add(new ClinicianData("c001", "John", "Due", "000", "001", "i9@hh.cm","rms"));
@@ -43,25 +45,8 @@ public class Main {
         patientDataArrayList.add(pd);
         patientDataArrayList.add(pd2);
 
-
-
         UserList UL = new UserList(cd,patientDataArrayList);
 
-
-
         return UL;
-    }
-
-    private static void testFrame(){
-        JFrame testFrame = new JFrame("test");
-        testFrame.setLayout(new BorderLayout());
-        testFrame.setSize(900,600);
-        testFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-
-        JPanel panel = new LogInDetailPanel();
-        testFrame.add(panel, BorderLayout.NORTH);
-
-        testFrame.setVisible(true);
     }
 }

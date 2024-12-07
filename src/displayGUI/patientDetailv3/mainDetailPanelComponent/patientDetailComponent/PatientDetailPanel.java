@@ -22,40 +22,40 @@ public class PatientDetailPanel extends JPanel {
 
 
     public PatientDetailPanel() {
-        // パネルの初期設定
+        // initialize panel
         setPreferredSize(new Dimension(700, 600));
         setLayout(new GridBagLayout());
         setDefaultComponent();
     }
 
-    // 新しい患者データを設定
+    // set new patient
     public void setNewPatient(PatientData pd) {
-        setGridBagConstrains(); // GridBagConstraintsの初期化
+        setGridBagConstrains(); // GridBagConstraints initilize
         this.pd = pd;
         setGeneralInformation(pd);
-        refreshPanel(); // パネルを更新
+        refreshPanel(); // refresh panel
     }
 
-    // パネルのデフォルトコンポーネントを設定
+    // get default panel component which remove everything for this one _ no sidebars
     public void setDefaultComponent() {
-        removeAll(); // すべてのコンポーネントを削除
+        removeAll();
     }
 
-    // GridBagConstraintsの設定
+
     private void setGridBagConstrains() {
         gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
         gbc.insets = new Insets(10, 10, 10, 10);
     }
 
-    // GridBagConstraintsを設定して取得
+
     private GridBagConstraints getSetGridBagConstrains(int x, int y) {
         gbc.gridx = x;
         gbc.gridy = y;
         return gbc;
     }
 
-    // GridBagConstraintsを設定して取得（幅と高さ指定）
+    // set ridBagConstraints but you can set width and heights as well
     private GridBagConstraints getSetGridBagConstrains(int x, int y, int width, int height) {
         gbc.gridx = x;
         gbc.gridy = y;
@@ -66,7 +66,9 @@ public class PatientDetailPanel extends JPanel {
         return gbc;
     }
 
-    // 患者の基本情報パネルを設定
+    /**
+     * Detail panel for general information of patient like name and address
+      */
     public void setGeneralInformation(PatientData pd) {
         if(generalInformation != null){
             remove(generalInformation);
@@ -77,7 +79,9 @@ public class PatientDetailPanel extends JPanel {
         add(generalInformation, getSetGridBagConstrains(0, 0, 1, 1));
     }
 
-    // 患者ログパネルを設定
+    /** set patient logpanel and return it
+     * @param bloodPressureRecordList
+     */
     public void setPatientLogPanel(BloodPressureRecordList bloodPressureRecordList) {
 
 
@@ -115,7 +119,8 @@ public class PatientDetailPanel extends JPanel {
     }
 
 
-    public void setPatientLogPanel(boolean isWarning, BloodPressureRecordList bloodPressureRecordList) {
+    //Not in use for this prototype - panel for the alert
+    public void setPatientAlertPanel(boolean isWarning, BloodPressureRecordList bloodPressureRecordList) {
 
 
         //If parameter is empty
@@ -151,25 +156,12 @@ public class PatientDetailPanel extends JPanel {
         refreshPanel();
     }
 
-    public JList getJlist() {
-        return jlist;
-    }
 
-    private void testFunction(){
-
-
-
-    }
-
-
-
-
-
-
-    // パネルを更新
+    /**refresh panel like other refreshers
+     */
     public void refreshPanel() {
-        invalidate(); // パネルを無効化
-        validate(); // パネルを有効化
-        repaint(); // パネルを再描画
+        invalidate();
+        validate();
+        repaint();
     }
 }

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.DoublePredicate;
 
-/**Singleton class State for Clinician
+/**Singleton class State for Clinician.
  */
 public class ClinicianMode implements  IMainPanelState, IPatientDataChangeListener {
 
@@ -33,8 +33,9 @@ public class ClinicianMode implements  IMainPanelState, IPatientDataChangeListen
     private static PatientData patientData = null;
 
 
-
-
+    /**Private constructor for singleton pattern
+     * @param mainPanelController
+     */
     private ClinicianMode(MainPanelController mainPanelController){
         ClinicianMode.mainPanelController = mainPanelController;
         //addListener
@@ -44,6 +45,10 @@ public class ClinicianMode implements  IMainPanelState, IPatientDataChangeListen
 
     }
 
+    /**Create instance and return it.
+     * @param mainPanelController
+     * @return
+     */
     public static ClinicianMode initializeInstance(MainPanelController mainPanelController){
         if(mainPanelController == null){
             throw new RuntimeException("main Panel Controller is null");
@@ -57,11 +62,13 @@ public class ClinicianMode implements  IMainPanelState, IPatientDataChangeListen
         return clinicianMode;
     }
 
+    /** get this instance without making instance - less time to go through
+     * @return
+     */
     public static ClinicianMode getInstance(){
         if(mainPanelController == null){
             throw new RuntimeException("main Panel Controller is null");
         }
-
         return clinicianMode;
     }
 
@@ -84,13 +91,17 @@ public class ClinicianMode implements  IMainPanelState, IPatientDataChangeListen
 
     @Override
     public void setNextState() {
-        //Actually doing nothing.
+        //Actually doing nothing for next uodate, it should go back to login state
         mainPanelController.setNextPanelState(mainPanelController.getLoginState());
     }
 
-    private void performSearchAction(){
+    /**Perform search acgtion at sidebar.
+     */
+    private void performSearchAction(String searchMode, String searchWord){
 
-
+        /*
+        search user by search mode and word and update sidebar
+         */
 
     }
 
@@ -104,25 +115,31 @@ public class ClinicianMode implements  IMainPanelState, IPatientDataChangeListen
             @Override
             public void mouseClicked(MouseEvent e) {
 
+                //Below is temporary if statement to do test mode function
                 if(clinicianSideBar.getPatientIdRadioButton().isSelected()){
                     //mainPanelController.getPatientDetailPanel().setSearchindexLabel("ID", getSerchText(clinicianSideBar));
                     JOptionPane.showMessageDialog(mainPanelController.getPatientDetailPanel(), "Does Not Support in this version. This test list all users.");
+                    //Update Sidebar
                     clinicianSideBar.setListModel(mainPanelController.getUserList().getPatientDataArrayList());
 
                 } else if (clinicianSideBar.getPatientNameRadioButton().isSelected()) {
+
+                    //NO function for now - just show it is not supported
+
                     //mainPanelController.getPatientDetailPanel().setSearchindexLabel("Name", getSerchText(clinicianSideBar));
                     JOptionPane.showMessageDialog(mainPanelController.getPatientDetailPanel(), "Does Not Support in this version. Test function available via ID search.");
                 }
                 else {
+                    //neither radio button is selected is out of consideration - there should be a bug
                     throw new RuntimeException("Unsupported Radio Button");
                 }
+                //refresh panel
                 mainPanelController.getPatientDetailPanel().refreshPanel();
             }
         });
 
 
-
-       //Get Selected Patient
+       //Get Selected Patient by double click
         clinicianSideBar.getDataJList().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -132,6 +149,7 @@ public class ClinicianMode implements  IMainPanelState, IPatientDataChangeListen
                     patientData = selectedPatient;
                     setPatientGeneralInfo();
                     setPatientLogData();
+
                 }
             }
         });
@@ -150,7 +168,6 @@ public class ClinicianMode implements  IMainPanelState, IPatientDataChangeListen
 //    }
 
 
-
     private void setDetailPanel(){
         JPanel detailPanelComponent = mainPanelController.getPatientDetailPanel();
 
@@ -161,25 +178,29 @@ public class ClinicianMode implements  IMainPanelState, IPatientDataChangeListen
 
     ///Patient Data
     ///
-    /**
-     *
+    /** this will set patient general data such as name, adress, etc
      */
     private void setPatientGeneralInfo(){
-
         mainPanelController.getPatientDetailPanel().setNewPatient(patientData);
     }
 
+    /**This will set patient log
+     */
     private void setPatientLogData(){
 
+        //Get patient history data
         PatientListEntry patientListEntry = mainPanelController.getPatientDataManager().getPatientListEntry();
 
         PatientEntry patientEntry;
 
+        //If there are not patient data then do nothing
         if(patientData == null){
             return;
         }
 
 
+        //get patient record
+        //SHould fo it in business logic
         if(patientListEntry.getContent(patientData.getUserId()).equals(patientData.getUserId())){
             patientEntry = (PatientEntry) patientListEntry.getRecordContent(patientData.getUserId());
         }
@@ -190,10 +211,13 @@ public class ClinicianMode implements  IMainPanelState, IPatientDataChangeListen
 
 
 
+        //Should do it in business logic
         if(patientEntry.getRecord().isEmpty()){
             mainPanelController.getPatientDetailPanel().setPatientLogPanel(null);
         }
 
+        //get each record in blood pressure
+        //should be done by business logic but I did not have time for it
         for(Entry e: patientEntry.getRecord()){
             if( e instanceof BloodPressureRecordList){
 
@@ -210,6 +234,7 @@ public class ClinicianMode implements  IMainPanelState, IPatientDataChangeListen
                 BloodPressureRecord newData = (BloodPressureRecord) bloodPressureRecordArrayList.getLast();
 
 
+                //if the patient added data is more than the threshold, display pop up as alert.
                 if(checkThreshold(patientData, newData)){
                     JOptionPane.showMessageDialog(mainPanelController.getPatientDetailPanel(), newData);
                 }
@@ -219,13 +244,16 @@ public class ClinicianMode implements  IMainPanelState, IPatientDataChangeListen
         }
     }
 
+    /** Check threshold and the value
+     * @param pd
+     * @param bloodPressureRecord
+     * @return
+     */
     private boolean checkThreshold(PatientData pd, BloodPressureRecord bloodPressureRecord){
 
         if(pd.getBloodPressureThreshold().isEmpty()){
             return true;
         }
-
-        String s1 = (String) pd.getBloodPressureThreshold().get("bpSystolicH");
 
         double sH = Double.parseDouble((String) pd.getBloodPressureThreshold().get("bpSystolicH")) ;
         double sL = Double.parseDouble((String) pd.getBloodPressureThreshold().get("bpSystolicL"));
@@ -238,7 +266,6 @@ public class ClinicianMode implements  IMainPanelState, IPatientDataChangeListen
 
         if((sH < currentS) |(sL > currentS) | dH < currentd | dL > currentd){
             return false;
-
         }
 
         return true;
@@ -253,8 +280,7 @@ public class ClinicianMode implements  IMainPanelState, IPatientDataChangeListen
 
 
 
-
-
+    //Event Lisner when it is updated
     @Override
     public void patientDataChanged(PatientDataChangeEvent event) {
         if(patientData != null){
@@ -267,12 +293,9 @@ public class ClinicianMode implements  IMainPanelState, IPatientDataChangeListen
     }
 
 
-    ///TEST
+    ///TEST method to add data three clicks and can enter user data
 
     public void TESTER(){
-
-
-
 
         mainPanelController.getPatientDetailPanel().addMouseListener(new MouseAdapter() {
             @Override

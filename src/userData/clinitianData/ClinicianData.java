@@ -5,6 +5,9 @@ import userData.patientData.PatientData;
 
 import java.util.ArrayList;
 
+/**ClinicianData class is the data for clinitian which saves patient they are watching
+ * Not used in this prototype as of December 2024
+ */
 public class ClinicianData extends UserAbstractData {
 
     ArrayList<String> patientDataArrayList;
@@ -33,12 +36,20 @@ public class ClinicianData extends UserAbstractData {
         return true;
     }
 
+    /**return
+     * @param patientId
+     * @return
+     */
     public boolean patientDataExist(String patientId){
 
+        //Check arraylist of patient id and return true if it exist.
         return true;
     }
 
 
+    /**get all patient id they are watching
+     * @return arralist of patient id
+     */
     public ArrayList<String> getPatientDataArrayList() {
         return patientDataArrayList;
     }

@@ -5,6 +5,8 @@ import userData.patientData.PatientData;
 import javax.swing.*;
 import java.awt.*;
 
+/**Display patient general Info panel
+ */
 public class PatientInfoPanel extends JPanel {
 
     public PatientData patientData;
@@ -99,11 +101,5 @@ public class PatientInfoPanel extends JPanel {
         emailLabel.setFont(defaultFont);
         return emailLabel;
     }
-
-
-
-
-
-
 
 }

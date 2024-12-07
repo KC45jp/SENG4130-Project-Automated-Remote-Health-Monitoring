@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**PatientDataManager mage RECORD of the patient, not patient general information.
+ */
 public class PatientDataManager {
 
     private PatientListEntry patientListEntry;

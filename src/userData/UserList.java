@@ -5,6 +5,8 @@ import userData.patientData.PatientData;
 
 import java.util.ArrayList;
 
+/**User List class has array list of users both clinician and patient.
+ */
 public class UserList {
 
     private ArrayList<ClinicianData> clinicianDataArrayList;

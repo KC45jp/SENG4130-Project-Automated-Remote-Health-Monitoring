@@ -1,5 +1,7 @@
 package userData;
 
+/**Template of User data. save generic informagtion such as userId, name, passowords, etc...
+ */
 public abstract class UserAbstractData {
 
 

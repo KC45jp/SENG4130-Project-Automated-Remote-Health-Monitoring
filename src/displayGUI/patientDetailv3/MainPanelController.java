@@ -22,12 +22,11 @@ This class will have Several States.
 
 To make this class not too huge with unnecessary methods, please implement concrete method to Listeners in each state.
 
-
-
  */
 /////////////////////////
 
-
+/**Main Panel Controller is controller of MVC model of this project and change its behavior by State Pattern.
+ */
 public class MainPanelController {
 
     //Main Panel
@@ -52,12 +51,15 @@ public class MainPanelController {
     public static IMainPanelState LOGIN_STATE;
 
 
+    /// Business Logics
+    /// FOllowing are business logics
 
+    //User List both patient and clinicians
     private UserList userList;
 
 
-    //For this
-    //IDBHandler dbHandler = new DBHandlerXML();
+
+    //Business logic of this project which controls Data
     private PatientDataManager patientDataManager = new PatientDataManager();
 
 
@@ -157,9 +159,7 @@ public class MainPanelController {
 
 
 
-    //other
-
-
+    //other getters
     public PatientDataManager getPatientDataManager() {
         return patientDataManager;
     }

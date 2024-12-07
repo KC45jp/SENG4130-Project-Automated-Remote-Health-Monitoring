@@ -3,6 +3,8 @@ package displayGUI.patientDetailv3.mainDetailPanelComponent;
 import javax.swing.*;
 import java.awt.*;
 
+/**One of the component for detail panel - one for login
+ */
 public class LogInDetailPanel extends JPanel {
 
     private JTextField textFieldUsername;
